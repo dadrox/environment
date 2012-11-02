@@ -1,95 +1,116 @@
-cb() { # cd up to a certain name
+# A bunch of bash functions that I find useful for various purposes
+#
+# DEPENDS ON ask-grep... you're welcome
+
+# cd up to a certain directory name
+cb() {
     pushd `pwd | sed -r "s/($1).*/\\1/"`
 }
 
-find_file_w_extension() {
+_find_file_w_extension() {
     find . -type f -name $1
 }
 
+# find all scala files from the current directory
 scala_files() {
-    find_file_w_extension "*.scala"
+    _find_file_w_extension "*.scala"
 }
 
+# find all groovy files from the current directory
 groovy_files() {
-    find_file_w_extension "*.groovy"
+    _find_file_w_extension "*.groovy"
 }
 
+# find all java files from the current directory
 java_files() {
-    find_file_w_extension "*.java"
+    _find_file_w_extension "*.java"
 }
 
-grepit() {
+_grepit() {
     xargs ack-grep --color $1
 }
 
-find_whatev() {
+_find_whatev() {
     if [ $3 ]
     then
-        $1 | grep -v $3 | grepit $2
+        $1 | grep -v $3 | _grepit $2
     else
-        $1 | grepit $2
+        $1 | _grepit $2
     fi
 }
 
-find_whatev_i() {
+_find_whatev_i() {
     if [ $3 ]
     then
-        $1 | grep -v $3 | grepit -i $2
+        $1 | grep -v $3 | _grepit -i $2
     else
-        $1 | grepit -i $2
+        $1 | _grepit -i $2
     fi
 }
 
-fs() { # find scala
-	find_whatev scala_files $1 $2
+# finds a given string in scala files
+# fs <token to find> [filter word(s)]
+# fs SshClient "Test\|sandbox"
+fs() {
+	_find_whatev scala_files $1 $2
 }
 
-fsi() { # find scala, case-insensitive
-	find_whatev_i scala_files $1 $2
+# finds a given string in scala files (case-insensitive)
+fsi() {
+	_find_whatev_i scala_files $1 $2
 }
 
-fa() { # find all
-	find . -type f | grepit $1
+# finds a given string in any file
+fa() {
+	find . -type f | _grepit $1
 }
 
-fsf() { # find scala file
+# finds a given string in any file (case-insensitive)
+fai() {
+    find . -type f | _grepit -i $1
+}
+
+# finds a scala file with the given string in its name (case-insensitive)
+fsf() {
 	scala_files | grep -i $1
 }
 
-fgr () { # find groovy :(
-	find_whatev groovy_files $1 $2
+# finds a given string in groovy files
+fgr () {
+	_find_whatev groovy_files $1 $2
 }
 
+# finds a given string in groovy files (case-insensitive)
 fgri () { # find groovy :( case-insensitive
-	find_whatev_i groovy_files $1 $2
+	_find_whatev_i groovy_files $1 $2
 }
 
-fj() { # find java 
-	find_whatev java_files $1 $2
+# finds a given string in java files
+fj() {
+	_find_whatev java_files $1 $2
 }
 
+# finds a given string in java files (case-insensitive)
 fji() { # find java 
-	find_whatev_i java_files $1 $2
+	_find_whatev_i java_files $1 $2
 }
 
-fjar() { # find jar in ivy cache
+# find jar in ivy cache (case-insensitive)
+fjar() {
 	find ~/.ivy2/cache/ -iname "$@.jar"
 }
 
-fclass() { # find class in ivy cache
+# find jar in ivy cache containing a class name with the given string (case-insensitive)
+fclass() {
 	find ~/.ivy2/cache/ -name "*.jar" -exec grep -il --color "$@" {} \;
 }
 
-fni() { # find any file
-	find . -type f -iname "$1"
+# find a file name containing the given string
+ff() {
+	find . -type f -iname "*$1*"
 }
 
-killgrep() {
-	ps aux | grep $@ | awk '{print $2}' | xargs kill -9
-	echo "$2 should be killed, check the list below"
-	echo `ps -ef | grep $2`
-}
-
+# prints the manifest of the given jar
 manifest() {
 	unzip -p "$@" META-INF/MANIFEST.MF
 }
