@@ -1,6 +1,6 @@
 # A bunch of bash functions that I find useful for various purposes
 #
-# DEPENDS ON ask-grep... you're welcome
+# DEPENDS ON ack-grep... you're welcome.  At least on Ubuntu/Mint it is ack-grep.  On OSX homebrew it is just ack
 
 # cd up to a certain directory name
 cb() {
