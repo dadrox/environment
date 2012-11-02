@@ -61,6 +61,10 @@ fsi() {
 	_find_whatev_i scala_files $1 $2
 }
 
+fsc() {
+    scala_files | xargs ack-grep -il --color-match=yellow  --match "(class|object|trait) [a-zA-Z]*$1"
+}
+
 # finds a given string in any file
 fa() {
 	find . -type f | _grepit $1
