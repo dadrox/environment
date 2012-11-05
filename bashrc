@@ -70,6 +70,11 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# local bash completions
+if [ -f ~/.bash_completion ]; then
+    . ~/.bash_completion
+fi
+
 export GRAILS_HOME=/opt/grails
 PATH=$GRAILS_HOME/bin:$PATH
 
