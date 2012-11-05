@@ -9,7 +9,7 @@
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
-export HISTSIZE=5000
+export HISTSIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -34,7 +34,8 @@ fi
 #esac
 
 # Comment in the above and uncomment this below for a color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]\$ '
+PS_ROOT="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]"
+PS1="${PS_ROOT}\$ "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -63,6 +64,17 @@ if [ -f ~/.bash_aliases_work ]; then
     . ~/.bash_aliases_work
 fi
 
+# useful bash functions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
+# super fancy PS1
+if [ -f ~/.bash_ps1 ]; then
+    . ~/.bash_ps1
+    PS1="${PS_ROOT}\$(${dvcs_function})\[$COLOR_RESET\]\$ "
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -70,17 +82,22 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# local bash completions
+# user defined bash completions :D
 if [ -f ~/.bash_completion ]; then
     . ~/.bash_completion
 fi
 
+export EDITOR=/usr/bin/vim
+
 export GRAILS_HOME=/opt/grails
 PATH=$GRAILS_HOME/bin:$PATH
 
+export GRADLE_HOME=/opt/gradle
+PATH=$GRADLE_HOME/bin:$PATH
+
 export MAVEN_HOME=/opt/maven
 PATH=$MAVEN_HOME/bin:$PATH
-
+                                                                                                                                                         1,1           Top
 export JAVA_HOME=/opt/java
 PATH=$JAVA_HOME/bin:$PATH
 
@@ -90,4 +107,3 @@ PATH=$SCALA_HOME/bin:$PATH
 PATH=~/bin:$PATH
 
 export PATH
-
