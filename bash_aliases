@@ -1,1 +1,26 @@
-/home/cwood/hg/backup/settings/home/.bash_aliases
+alias ls='ls --color=auto -h -p'
+alias ll='ls -l'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lr='ls -ltr'
+alias x='exit'
+alias c='clear'
+alias grep='grep --color=auto'
+alias df='df -h'
+alias top='htop'
+alias vim='vi'
+alias lsd='ls -d */'
+alias o='gnome-open'
+
+alias new='cd ~/new'
+alias cg='cd ~/code/git'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias gt='git'
+alias gr='gradle'
+
+alias w='cd ~/.wine/drive_c/'
