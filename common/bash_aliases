@@ -24,3 +24,5 @@ alias gt='git'
 alias gr='gradle'
 
 alias w='cd ~/.wine/drive_c/'
+
+alias s='source'
