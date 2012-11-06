@@ -97,7 +97,7 @@ PATH=$GRADLE_HOME/bin:$PATH
 
 export MAVEN_HOME=/opt/maven
 PATH=$MAVEN_HOME/bin:$PATH
-                                                                                                                                                         1,1           Top
+
 export JAVA_HOME=/opt/java
 PATH=$JAVA_HOME/bin:$PATH
 
