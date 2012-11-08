@@ -28,34 +28,23 @@ java_files() { # find all java files from the current directory
 }
 
 _grepit() {
-    xargs ack-grep --color $1
+	xargs ack-grep --color-filename=yellow --color-match="green" "$@"
 }
 
 _find_whatev() {
-    if [ $3 ]
-    then
-        $1 | grep -v $3 | _grepit $2
-    else
-        $1 | _grepit $2
-    fi
+	$1 | _grepit "$2"
 }
 
 _find_whatev_i() {
-    if [ $3 ]
-    then
-        $1 | grep -v $3 | _grepit -i $2
-    else
-        $1 | _grepit -i $2
-    fi
+	$1 | _grepit -i "$2"
 }
 
-# fs SshClient "Test\|sandbox"
-fs() { # finds a given string in scala files. E.g. fs <token to find> [filter word(s)]
-	_find_whatev scala_files $1 $2
+fs() { # finds a given string in scala files.
+	_find_whatev scala_files "$@"
 }
 
 fsi() { # finds a given string in scala files (case-insensitive)
-	_find_whatev_i scala_files $1 $2
+	_find_whatev_i scala_files "$@"
 }
 
 fsc() { # finds a scala class, object, or trait (case-insensitive)
@@ -63,31 +52,31 @@ fsc() { # finds a scala class, object, or trait (case-insensitive)
 }
 
 fa() { # finds a given string in any file
-	find . -type f | _grepit $1
+	find . -type f | _grepit "$@"
 }
 
 fai() { # finds a given string in any file (case-insensitive)
-    find . -type f | _grepit -i $1
+	find . -type f | _grepit -i "$@"
 }
 
 fsf() { # finds a scala file with the given string in its name (case-insensitive)
-	scala_files | grep -i $1
+	scala_files | grep -i "$@"
 }
 
 fgr () { # finds a given string in groovy files
-	_find_whatev groovy_files $1 $2
+	_find_whatev groovy_files "$@"
 }
 
 fgri () { # finds a given string in groovy files (case-insensitive)
-	_find_whatev_i groovy_files $1 $2
+	_find_whatev_i groovy_files "$@"
 }
 
 fj() { # finds a given string in java files
-	_find_whatev java_files $1 $2
+	_find_whatev java_files "$@"
 }
 
 fji() { # finds a given string in java files (case-insensitive)
-	_find_whatev_i java_files $1 $2
+	_find_whatev_i java_files "$@"
 }
 
 fjar() { # find jar in ivy cache (case-insensitive)
