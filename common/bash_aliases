@@ -19,6 +19,8 @@ alias cg='cd ~/code/git'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 alias gt='git'
 alias gr='gradle'
