@@ -6,6 +6,10 @@ cmds () {
     cat $HOME/.bashrc.d/bash_functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-20s %s\n", $1, substr($0,index($0,$2)) }'
 }
 
+hr() { # echoes a horizontal rule
+	printf "${Yellow}%$(tput cols)s${Normal}\n"|tr ' ' '='
+}
+
 cb() { # cd up to a certain directory name
     pushd `pwd | sed -r "s/($1).*/\\1/"`
 }
@@ -39,11 +43,15 @@ _find_whatev_i() {
 }
 
 fs() { # finds a given string in scala files.
+	hr
 	_find_whatev scala_files "$@"
+	hr
 }
 
 fsi() { # finds a given string in scala files (case-insensitive)
+	hr
 	_find_whatev_i scala_files "$@"
+	hr
 }
 
 fsc() { # finds a scala class, object, or trait (case-insensitive)

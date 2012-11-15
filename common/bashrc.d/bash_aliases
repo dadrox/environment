@@ -11,6 +11,7 @@ alias df='df -h'
 alias top='htop'
 alias vim='vi'
 alias lsd='ls -d */'
+alias lsda='ls -ad .*/'
 alias o='gnome-open'
 
 alias new='cd ~/new'
