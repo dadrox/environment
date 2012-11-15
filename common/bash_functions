@@ -3,7 +3,7 @@
 # DEPENDS ON ack-grep... you're welcome.  At least on Ubuntu/Mint it is ack-grep.  On OSX homebrew it is just ack
 
 cmds () {
-    cat ~/.bash_functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-20s %s\n", $1, substr($0,index($0,$2)) }'
+    cat $HOME/.bashrc.d/bash_functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-20s %s\n", $1, substr($0,index($0,$2)) }'
 }
 
 cb() { # cd up to a certain directory name
@@ -109,4 +109,46 @@ killgrep() { # kills all processes containing the string, killgrep <name> <signa
 	ps aux | grep $name | awk '{print $2}' | xargs kill $signal
 	echo "$name should be killed, check the list below"
 	echo `ps -ef | grep $name`
+}
+
+list() { # lists the contents of several different types of archive files
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar tvjf $1      ;;
+             *.tar.gz)    tar tvzf $1      ;;
+             *.bz2)       bunzip2 -ck $1   ;;
+             *.rar)       unrar l $1       ;;
+             *.gz)        gunzip -l $1     ;;
+             *.tar)       tar tvf $1       ;;
+             *.tbz2)      tar tvjf $1      ;;
+             *.tgz)       tar tvzf $1      ;;
+             *.zip)       unzip -l $1      ;;
+             *.Z)         uncompress -l $1 ;;
+             *.7z)        7z l $1          ;;
+             *)           echo "'$1' cannot be listed" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+extract() { # extracts several different types of archive files
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1    ;;
+             *.tar.gz)    tar xvzf $1    ;;
+             *.bz2)       bunzip2 $1     ;;
+             *.rar)       unrar x $1     ;;
+             *.gz)        gunzip $1      ;;
+             *.tar)       tar xvf $1     ;;
+             *.tbz2)      tar xvjf $1    ;;
+             *.tgz)       tar xvzf $1    ;;
+             *.zip)       unzip $1       ;;
+             *.Z)         uncompress $1  ;;
+             *.7z)        7z x $1        ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
 }
