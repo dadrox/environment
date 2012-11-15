@@ -7,15 +7,11 @@ if [ -z $srcdir ]; then
 	exit 666
 fi
 
-bashdir=${HOME}/.bashrc.d
+bashdir="${HOME}/.bashrc.d"
 
 if [ ! -d $bashdir ]; then
-	mkdir $bashdir
 	ln -s "$srcdir/bashrc" "${HOME}/.bashrc"
-	ln -s "$srcdir/bash_aliases" $bashdir
-	ln -s "$srcdir/bash_completion" $bashdir
-	ln -s "$srcdir/bash_functions" $bashdir
-	ln -s "$srcdir/bash_ps1" $bashdir
+	ln -s "$srcdir/bashrc.d" $bashdir
 fi
 
 
