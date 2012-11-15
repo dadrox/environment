@@ -54,25 +54,9 @@ if [ "$TERM" != "dumb" ]; then
     #alias vdir='ls --color=auto --format=long'
 fi
 
-# my standard aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # work related aliases
 if [ -f ~/.bash_aliases_work ]; then
     . ~/.bash_aliases_work
-fi
-
-# useful bash functions
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
-
-# super fancy PS1
-if [ -f ~/.bash_ps1 ]; then
-    . ~/.bash_ps1
-    PS1="${PS_ROOT}\$(${dvcs_function})\[$COLOR_RESET\]\$ "
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -82,9 +66,10 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# user defined bash completions :D
-if [ -f ~/.bash_completion ]; then
-    . ~/.bash_completion
+if [ -d ${HOME}/.bashrc.d ]; then
+    for file in ${HOME}/.bashrc.d/*; do
+        source "$file";
+    done
 fi
 
 export EDITOR=/usr/bin/vim

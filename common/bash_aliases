@@ -28,3 +28,5 @@ alias gr='gradle'
 alias w='cd ~/.wine/drive_c/'
 
 alias s='source'
+alias search='aptitude search '
+alias install='sudo aptitude install '
