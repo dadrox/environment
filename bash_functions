@@ -6,6 +6,7 @@
 cb() {
     pushd `pwd | sed -r "s/($1).*/\\1/"`
 }
+complete -W "$(pwd | tr '/' ' ')" cb
 
 _find_file_w_extension() {
     find . -type f -name $1
