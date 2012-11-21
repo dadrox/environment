@@ -13,7 +13,6 @@ hr() { # echoes a horizontal rule
 cb() { # cd up to a certain directory name
     pushd `pwd | sed -r "s/($1).*/\\1/"`
 }
-complete -W "$(pwd | tr '/' ' ')" cb
 
 _find_file_w_extension() {
     find . -type f -name $1
@@ -161,3 +160,18 @@ extract() { # extracts several different types of archive files
          echo "'$1' is not a valid file"
      fi
 }
+<<<<<<< HEAD
+=======
+
+exclude-dir() { # recursivley excludes a directory name from dropbox
+	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude add '{}'
+}
+
+include-dir() { # recursivley removes exclusion of a directory name from dropbox
+	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude remove '{}'
+}
+
+resource() { # sources your .bashrc
+	source $HOME/.bashrc
+}
+>>>>>>> upstream/master
