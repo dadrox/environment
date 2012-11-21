@@ -160,3 +160,15 @@ extract() { # extracts several different types of archive files
          echo "'$1' is not a valid file"
      fi
 }
+
+exclude-dir() { # recursivley excludes a directory name from dropbox
+	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude add '{}'
+}
+
+include-dir() { # recursivley removes exclusion of a directory name from dropbox
+	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude remove '{}'
+}
+
+resource() { # sources your .bashrc
+	source $HOME/.bashrc
+}
