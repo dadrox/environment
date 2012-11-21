@@ -63,7 +63,7 @@ fsco() { # finds a scala class, object, or trait (case-insensitive)
 }
 
 fa() { # finds a given string in any file
-	find . -type f | _grepit "$@"
+	find . -type f | _grepit "$@" 2>&1 | ack-grep -v "No such file or directory" | ack-grep -v "Binary file"
 }
 
 fai() { # finds a given string in any file (case-insensitive)
@@ -160,6 +160,8 @@ extract() { # extracts several different types of archive files
          echo "'$1' is not a valid file"
      fi
 }
+<<<<<<< HEAD
+=======
 
 exclude-dir() { # recursivley excludes a directory name from dropbox
 	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude add '{}'
@@ -172,3 +174,4 @@ include-dir() { # recursivley removes exclusion of a directory name from dropbox
 resource() { # sources your .bashrc
 	source $HOME/.bashrc
 }
+>>>>>>> upstream/master
