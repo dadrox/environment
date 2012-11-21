@@ -63,7 +63,7 @@ fsco() { # finds a scala class, object, or trait (case-insensitive)
 }
 
 fa() { # finds a given string in any file
-	find . -type f | _grepit "$@"
+	find . -type f | _grepit "$@" 2>&1 | ack-grep -v "No such file or directory" | ack-grep -v "Binary file"
 }
 
 fai() { # finds a given string in any file (case-insensitive)
