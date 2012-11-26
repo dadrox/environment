@@ -5,15 +5,25 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+# erase duplicated entries, ignore entries that are duplicates or begin with spaces
+export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=20000
+# unify history across bash sessions
+export PROMPT_COMMAND="history -a; history -r"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+# append to the history file instead of overwriting it
+shopt -s histappend
+# cd's to directories without having to type cd
+shopt -s autocd
+# correct spelling in cd targets
+shopt -s cdspell
+# attempts directory misspelling correction
+shopt -s dirspell
+# enables ** recursive glob expansion
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
