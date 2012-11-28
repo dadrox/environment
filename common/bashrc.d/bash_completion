@@ -2,3 +2,5 @@
 # that dude deserves a nobel prize
 # tab completion for sites you ssh to
 complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
+
+complete -W "$(pwd | tr '/' ' ')" cb
