@@ -84,21 +84,3 @@ fi
 
 export EDITOR=/usr/bin/vim
 
-#export GRAILS_HOME=/opt/grails
-#PATH=$GRAILS_HOME/bin:$PATH
-#
-#export GRADLE_HOME=/opt/gradle
-#PATH=$GRADLE_HOME/bin:$PATH
-#
-#export MAVEN_HOME=/opt/maven
-#PATH=$MAVEN_HOME/bin:$PATH
-#
-#export JAVA_HOME=/opt/java
-#PATH=$JAVA_HOME/bin:$PATH
-#
-#export SCALA_HOME=/opt/scala
-#PATH=$SCALA_HOME/bin:$PATH
-#
-#PATH=~/bin:$PATH
-#
-#export PATH

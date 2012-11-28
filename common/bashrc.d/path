@@ -1,20 +1,25 @@
-export EDITOR=/usr/bin/vim
+_addPathEntry() {
+case ":$PATH:" in
+  *":$1:"*) :;; # already there
+  *) PATH="$1:$PATH";;
+esac
+}
 
 export GRAILS_HOME=/opt/grails
-PATH=$GRAILS_HOME/bin:$PATH
+_addPathEntry "$GRAILS_HOME/bin"
 
 export GRADLE_HOME=/opt/gradle
-PATH=$GRADLE_HOME/bin:$PATH
+_addPathEntry "$GRADLE_HOME/bin"
 
 export MAVEN_HOME=/opt/maven
-PATH=$MAVEN_HOME/bin:$PATH
+_addPathEntry "$MAVEN_HOME/bin"
 
 export JAVA_HOME=/opt/java
-PATH=$JAVA_HOME/bin:$PATH
+_addPathEntry "$JAVA_HOME/bin"
 
 export SCALA_HOME=/opt/scala
-PATH=$SCALA_HOME/bin:$PATH
+_addPathEntry "$SCALA_HOME/bin"
 
-PATH=~/bin:$PATH
+_addPathEntry "$HOME/bin"
 
 export PATH
