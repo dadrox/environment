@@ -163,12 +163,12 @@ extract() { # extracts several different types of archive files
 
 exclude-dir() { # recursivley excludes a directory name from dropbox
 #	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude add '{}'
-	dropbox exclude add `find . -type d -name target -printf '%p '`
+	dropbox exclude add `find . -type d -name $1 -printf '%p '`
 }
 
 include-dir() { # recursivley removes exclusion of a directory name from dropbox
 #	find . -type d -name $1 -printf '%P\0 ' | xargs -0 dropbox exclude remove '{}'
-	dropbox exclude remove `find . -type d -name target -printf '%p '`
+	dropbox exclude remove `find . -type d -name $1 -printf '%p '`
 }
 
 resource() { # sources your .bashrc
