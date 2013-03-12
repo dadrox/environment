@@ -3,7 +3,7 @@
 # DEPENDS ON ack-grep... you're welcome.  At least on Ubuntu/Mint it is ack-grep.  On OSX homebrew it is just ack
 
 cmds () {
-    cat $HOME/.bashrc.d/functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-20s %s\n", $1, substr($0,index($0,$2)) }'
+    cat $HOME/.bashrc.d/functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }'
 }
 
 hr() { # echoes a horizontal rule
@@ -64,6 +64,10 @@ fsco() { # finds a scala class, object, or trait (case-insensitive)
 
 fa() { # finds a given string in any file
 	find . -type f | _grepit "$@"
+}
+
+fan() { # finds a given string in files that match the pattern (fan <file pattern> <string pattern>)
+	_find_file_w_extension $1 | _grepit "$2"
 }
 
 fai() { # finds a given string in any file (case-insensitive)

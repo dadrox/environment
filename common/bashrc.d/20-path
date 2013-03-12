@@ -5,6 +5,9 @@ case ":$PATH:" in
 esac
 }
 
+export GROOVY_HOME=/opt/groovy
+_addPathEntry "$GROOVY_HOME/bin"
+
 export GRAILS_HOME=/opt/grails
 _addPathEntry "$GRAILS_HOME/bin"
 

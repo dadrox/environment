@@ -7,7 +7,7 @@
 
 # erase duplicated entries, ignore entries that are duplicates or begin with spaces
 export HISTCONTROL="erasedups:ignoreboth"
-export HISTSIZE=20000
+export HISTSIZE=50000
 # unify history across bash sessions
 export PROMPT_COMMAND="history -a; history -r"
 
@@ -44,7 +44,8 @@ fi
 #esac
 
 # Comment in the above and uncomment this below for a color prompt
-PS_ROOT="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]"
+#PS_ROOT="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]"
+#PS_ROOT="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]"
 PS1="${PS_ROOT}\$ "
 
 # If this is an xterm set the title to user@host:dir
@@ -78,6 +79,12 @@ fi
 
 if [ -d ${HOME}/.bashrc.d ]; then
     for file in ${HOME}/.bashrc.d/*; do
+        source "$file";
+    done
+fi
+
+if [ -d ${HOME}/.bashrc.work ]; then
+    for file in ${HOME}/.bashrc.work/*; do
         source "$file";
     done
 fi
