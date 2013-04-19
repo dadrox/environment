@@ -25,6 +25,14 @@ shopt -s dirspell
 # enables ** recursive glob expansion
 shopt -s globstar
 
+# bind -f .inputrc
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind -u delete-char
+bind '"\C-d": kill-whole-line'
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 

@@ -3,7 +3,7 @@
 # DEPENDS ON ack-grep... you're welcome.  At least on Ubuntu/Mint it is ack-grep.  On OSX homebrew it is just ack
 
 cmds () {
-    cat $HOME/.bashrc.d/functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }'
+    cat $HOME/.bashrc.d/*functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }'
 }
 
 hr() { # echoes a horizontal rule
@@ -195,4 +195,12 @@ for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
   echo;
 done
 echo
+}
+
+hosts() { # prints hosts in ~/.ssh/config
+	ack-grep "Host\ " ~/.ssh/config
+}
+
+hostnames() { # prints hostnames in ~/.ssh/config
+	ack-grep "HostName\ " ~/.ssh/config
 }
