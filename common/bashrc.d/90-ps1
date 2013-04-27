@@ -2,7 +2,9 @@
 # http://andrewray.me/bash-prompt-builder/index.html#git=1&color-git=2&color-git-prefix=2&git-ahead=1&color-git-ahead=2b&git-modified=1&color-git-modified=2&git-conflicted=1&color-git-conflicted=1&color-git-revno=2&git-bisect=1&color-git-bisect=5&option-submodule=1&color-option-submodule=5&git-ontag=1&color-git-ontag=4&hg=1&color-hg=5&hg-prefix=1&color-hg-prefix=5&hg-modified=1&color-hg-modified=5&hg-conflicted=1&color-hg-conflicted=1&hg-revno=1&color-hg-revno=5&hg-bisect=1&color-hg-bisect=3&hg-patches=1&color-hg-patches=3&color-svn=6&color-svn-modified=6&color-svn-revno=6&option-modified=%E2%96%B3&option-conflict=%E2%98%A2&color-option-conflict=3b&max-conflicted-files=2&option-nobranch=%E2%9C%96&color-option-nobranch=1&bisecting-text=%CF%95&submodule-text=%E2%9E%98
 
 MAX_CONFLICTED_FILES=2
-DELTA_CHAR="▲"
+#DELTA_CHAR="▲"
+DELTA_CHAR="Δ"
+#DELTA_CHAR="  ⃤"
 CONFLICT_CHAR="(╯°□°）╯︵ ┻━┻"
 BISECTING_TEXT="ϕ"
 NOBRANCH_TEXT="✖"
