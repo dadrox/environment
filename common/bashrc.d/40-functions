@@ -2,6 +2,8 @@
 #
 # DEPENDS ON ack-grep... you're welcome.  At least on Ubuntu/Mint it is ack-grep.  On OSX homebrew it is just ack
 
+source $HOME/.bashrc.d/10-colors
+
 cmds () {
     cat $HOME/.bashrc.d/*functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }'
 }
@@ -198,9 +200,9 @@ echo
 }
 
 hosts() { # prints hosts in ~/.ssh/config
-	ack-grep "Host\ " ~/.ssh/config
+	ack-grep "Host\ " ~/.ssh/config | sort | cut -d " " -f 2
 }
 
 hostnames() { # prints hostnames in ~/.ssh/config
-	ack-grep "HostName\ " ~/.ssh/config
+	ack-grep "HostName\ " ~/.ssh/config | sort | cut -d " " -f 2
 }

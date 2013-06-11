@@ -41,6 +41,8 @@ set hlsearch
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+map <leader>gt :call TimeLapse() <cr> 
+
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
 
