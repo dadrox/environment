@@ -1,11 +1,14 @@
 alias sudo='sudo ' # enables expansion for the sudo'd command
 
+alias latest='ls -ltr'
+alias lr='ls -ltr'
+
+alias largest='ls -rSsh1'
 alias ls='ls --color=auto -h -p'
 alias ll='ls -l'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
-alias lr='ls -ltr'
 alias x='exit'
 alias c='clear'
 alias grep='grep --color=auto'

@@ -181,7 +181,8 @@ dvcs_function="
 
 source $HOME/.bashrc.d/40-functions
 
-#
+# ► ▶ ᐉ    
+#╼ ❱ ⟫ 
 beg="\[$COLOR_GREEN\]┏\[$COLOR_RESET\]"
-end="\[$COLOR_GREEN\]┗\[$COLOR_RESET\]"
+end="\[$COLOR_GREEN\]┗▶\[$COLOR_RESET\]"
 export PS1="${beg}${PS_ROOT}\$(${dvcs_function})\[$COLOR_RESET\]${hr}\n${end} "

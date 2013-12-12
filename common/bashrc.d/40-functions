@@ -9,7 +9,15 @@ cmds () {
 }
 
 hr() { # echoes a horizontal rule
-	printf "${Yellow}%$(tput cols)s${Normal}\n"|tr ' ' '='
+	local times=1
+        if [ -n "$1" ]; then
+		let times=$1
+	fi
+
+	for (( i=1; i<=$times; i++ ))
+	do
+		printf "${Yellow}%$(tput cols)s${Normal}\n"|tr ' ' '='
+	done
 }
 
 cb() { # cd up to a certain directory name
@@ -45,15 +53,21 @@ _find_whatev_i() {
 }
 
 fs() { # finds a given string in scala files.
-	hr
+	hr 2
 	_find_whatev scala_files "$@"
-	hr
+	hr 2
 }
 
 fsi() { # finds a given string in scala files (case-insensitive)
-	hr
+	hr 2
 	_find_whatev_i scala_files "$@"
-	hr
+	hr 2
+}
+
+fsig() { # find a given string in scala files, ignoring tests
+	hr 2
+	find . -name "*.scala" | ack-grep -iv "Test" | xargs ack-grep "$@"
+        hr 2
 }
 
 fsc() { # finds a scala class, object, or trait (case-insensitive)
@@ -97,7 +111,7 @@ fji() { # finds a given string in java files (case-insensitive)
 }
 
 fjar() { # find jar in ivy cache (case-insensitive)
-	find ~/.ivy2/cache/ -iname "$@.jar"
+	find ~/.ivy2/cache/ -iname "*$@*.jar"
 }
 
 fclass() { # find jar in ivy cache containing a class name with the given string (case-insensitive)

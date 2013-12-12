@@ -26,8 +26,8 @@ shopt -s dirspell
 shopt -s globstar
 
 # bind -f .inputrc
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+#bind '"\e[A": history-search-backward'
+#bind '"\e[B": history-search-forward'
 bind -u delete-char
 bind '"\C-d": kill-whole-line'
 bind 'set show-all-if-ambiguous on'
