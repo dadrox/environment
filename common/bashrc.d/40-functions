@@ -8,6 +8,10 @@ cmds () {
     cat $HOME/.bashrc.d/*functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }'
 }
 
+ts() { # timestamp
+	date +"%Y%m%d.%H%m"
+}
+
 hr() { # echoes a horizontal rule
 	local times=1
         if [ -n "$1" ]; then

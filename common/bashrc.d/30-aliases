@@ -20,6 +20,7 @@ alias lsd='ls -d */'
 alias lsda='ls -ad .*/'
 #alias rm='safe-rm'
 alias o='gnome-open'
+alias dates="date '+DATE: %m/%d/%y%nTIME: %H:%M:%S'"
 
 alias new='cd ~/new'
 alias cg='cd ~/code/git'
