@@ -1,1 +1,29 @@
-export PS_ROOT="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[00m\][\[\033[01;34m\]\w\[\033[00m\]]"
+Chrooted="${debian_chroot:+($debian_chroot)}"
+
+if [ -z "$HostColor" ]; then
+  HostColor="${LightGreen}"
+fi
+
+if [ -z "$UserColor" ]; then
+  UserColor="${LightGreen}"
+fi
+
+if [ -z "$PathColor" ]; then
+  PathColor="${LightBlue}"
+fi
+
+if [ -z "$TimeColor" ]; then
+  TimeColor="${LightBlue}"
+fi
+
+User="${UserColor}\u${Normal}"
+Host="${HostColor}\h${Normal}"
+LocalSeparator="${LightGreen}@${Normal}"
+
+Locale="$User${LocalSeparator}$Host"
+Path="${PathColor}\w${Normal}"
+
+Time24="\$(date +%H%M)"
+Time="${TimeColor}${Time24}${Normal}"
+
+export PS_ROOT="\[$Chrooted$Locale[$Path]\]"

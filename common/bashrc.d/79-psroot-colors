@@ -1,0 +1,10 @@
+# You can override the PS_ROOT colors here
+
+HostColor=${Yellow}
+HostColor=${LightRed}
+HostColor=${LightGreen}
+
+UserColor=${LightGreen}
+
+PathColor=${LightBlue}
+TimeColor=${Blue}
