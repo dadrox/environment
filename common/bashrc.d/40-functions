@@ -217,6 +217,30 @@ done
 echo
 }
 
+colors2() { # prints sample of your color settings
+T='gYw'   # The test text
+echo -e "\n                                   \$(tput setab bg)"
+echo -e " \$(tput setaf fg)  0       1       2       3\
+       4       5       6       7"
+
+for fgs in $(seq 0 7); do
+  fg=${fgs}
+  echo -en " $fgs      $(tput setaf $fg)  $T  "
+  for bg in $(seq 0 7); do
+    echo -en "$EINS $(tput setaf $fg)$(tput setab $bg)  $T  $Reset"
+  done
+  echo;
+
+  echo -en " $fgs Bold $(tput setaf $fg)$Bold  $T  "
+  for bg in $(seq 0 7); do
+    echo -en "$EINS $(tput setaf $fg)$(tput setab $bg)$Bold  $T  $Reset"
+  done
+  echo;
+
+done
+echo
+}
+
 hosts() { # prints hosts in ~/.ssh/config
 	ack-grep "Host\ " ~/.ssh/config | sort | cut -d " " -f 2
 }

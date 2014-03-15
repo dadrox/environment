@@ -1,27 +1,27 @@
 Chrooted="${debian_chroot:+($debian_chroot)}"
 
 if [ -z "$HostColor" ]; then
-  HostColor="${LightGreen}"
+  HostColor="$Bold$Green"
 fi
 
 if [ -z "$UserColor" ]; then
-  UserColor="${LightGreen}"
+  UserColor="$Bold$Green"
 fi
 
 if [ -z "$PathColor" ]; then
-  PathColor="${LightBlue}"
+  PathColor="$Bold$Blue"
 fi
 
 if [ -z "$TimeColor" ]; then
-  TimeColor="${LightBlue}"
+  TimeColor="$Bold$Blue"
 fi
 
-User="${UserColor}\u${Normal}"
-Host="${HostColor}\h${Normal}"
-LocalSeparator="${LightGreen}@${Normal}"
+User="$UserColor\u$Normal"
+Host="$HostColor\h$Normal"
+LocaleSeparator="$Bold$Green@$Normal"
 
-Locale="$User${LocalSeparator}$Host"
-Path="${PathColor}\w${Normal}"
+Locale="$User$LocaleSeparator$Host"
+Path="$PathColor\w$Normal"
 
 Time24="\$(date +%H%M)"
 Time="${TimeColor}${Time24}${Normal}"
