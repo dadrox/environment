@@ -16,14 +16,21 @@ if [ -z "$TimeColor" ]; then
   TimeColor="$Bold$Blue"
 fi
 
-User="$UserColor\u$Normal"
-Host="$HostColor\h$Normal"
-LocaleSeparator="$Bold$Green@$Normal"
+psroot_extras_default() {
+  return
+}
+
+if [ "`type -t psroot_extras`" = 'function' ]; then
+  psroot_extras="psroot_extras"
+else
+  psroot_extras="psroot_extras_default"
+fi
+
+User="$UserColor\u$Reset"
+Host="$HostColor\h$Reset"
+LocaleSeparator="$Bold$Green@$Reset"
 
 Locale="$User$LocaleSeparator$Host"
-Path="$PathColor\w$Normal"
+Path="$PathColor\w$Reset"
 
-Time24="\$(date +%H%M)"
-Time="${TimeColor}${Time24}${Normal}"
-
-export PS_ROOT="\[$Chrooted$Locale[$Path]\]"
+export PS_ROOT="\[$Chrooted$Locale[$Path$(psroot_extras)]\]"

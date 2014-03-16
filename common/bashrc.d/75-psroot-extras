@@ -1,0 +1,34 @@
+if [ -z "$DateColor" ]; then
+  DateColor="$Blue"
+fi
+
+if [ -z "$TimeColor" ]; then
+  TimeColor="$Blue"
+fi
+
+if [ -z "$TzColor" ]; then
+  TzColor="$Blue"
+fi
+
+Date="$TimeColor\$(date +'%Y%m%d')$Reset"
+
+Time12="\$(date +'%I:%M%P')"
+Time24="\$(date +'%H:%M')"
+Time="$TimeColor${Time24}$Reset"
+
+Tz="$TzColor\$(date +'%z')$Reset"
+
+file_count() {
+  echo -n `ls | grep -v /$ | wc -l`
+}
+FileCount="$Blue\$(file_count)$Reset"
+
+dir_count() {
+  echo -n `ls | grep /$ | wc -l`
+}
+DirCount="$Blue\$(dir_count)$Reset"
+
+psroot_extras() {
+#  echo -n "|$DirCount,$FileCount|$Date $Time$Tz"
+  echo -n "|$DirCount,$FileCount|$Time$Tz"
+}

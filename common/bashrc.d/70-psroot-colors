@@ -7,4 +7,7 @@ HostColor=$Bold$Green
 UserColor=$Bold$Green
 
 PathColor=$Bold$Blue
+
+DateColor=$Blue
 TimeColor=$Blue
+TzColor=$Blue

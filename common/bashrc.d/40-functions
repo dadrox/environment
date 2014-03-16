@@ -9,7 +9,7 @@ cmds () {
 }
 
 ts() { # timestamp
-	date +"%Y%m%d.%H%m"
+	date +"%Y%m%d.%H%M"
 }
 
 hr() { # echoes a horizontal rule
