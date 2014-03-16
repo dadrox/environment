@@ -1,0 +1,5 @@
+# add git prompt here
+
+ps1_extras() {
+  echo -n $Git_Prompt
+}

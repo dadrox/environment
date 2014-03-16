@@ -1,1 +1,16 @@
-/home/dadrox/code/git/bash-git-prompt/gitprompt.sh
+ps1_extras_default() {
+  return
+}
+
+if [ "`type -t ps1_extras`" = 'function' ]; then
+  ps1_extras="ps1_extras"
+else
+  ps1_extras="ps1_extras_default"
+fi
+
+PS1_Start="\[$Green\]┏\[$Reset$PS_ROOT\$(ps1_extras)\]"
+PS1_End="\n\[$Green\]┗▶\[$Reset\] "
+
+PS1="$PS1_Start$PS1_End"
+
+export PS1

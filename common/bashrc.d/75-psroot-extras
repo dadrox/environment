@@ -21,12 +21,12 @@ Tz="$TzColor\$(date +'%z')$Reset"
 file_count() {
   echo -n `ls | grep -v /$ | wc -l`
 }
-FileCount="$Blue\$(file_count)$Reset"
+FileCount="$Normal\$(file_count)$Reset"
 
 dir_count() {
   echo -n `ls | grep /$ | wc -l`
 }
-DirCount="$Blue\$(dir_count)$Reset"
+DirCount="$Bold$Blue\$(dir_count)$Reset"
 
 psroot_extras() {
 #  echo -n "|$DirCount,$FileCount|$Date $Time$Tz"

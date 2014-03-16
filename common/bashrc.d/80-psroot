@@ -33,4 +33,4 @@ LocaleSeparator="$Bold$Green@$Reset"
 Locale="$User$LocaleSeparator$Host"
 Path="$PathColor\w$Reset"
 
-export PS_ROOT="\[$Chrooted$Locale[$Path$(psroot_extras)]\]"
+export PS_ROOT="$Chrooted$Locale[$Path$(psroot_extras)]"
