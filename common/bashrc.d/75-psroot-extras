@@ -31,4 +31,5 @@ DirCount="$Bold$Blue\$(dir_count)$Reset"
 psroot_extras() {
 #  echo -n "|$DirCount,$FileCount|$Date $Time$Tz"
   echo -n "|$DirCount,$FileCount|$Time$Tz"
+#  echo -n "|$Time$Tz"
 }

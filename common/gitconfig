@@ -2,6 +2,14 @@
 	excludesfile = ~/.gitignore
 [color]
 	ui = auto
+[color "status"]
+	header = black bold
+	branch = green
+	nobranch = red reverse white
+	added = green
+	changed = yellow
+	untracked = magenta
+	deleted = red bold
 [alias]
 	git = !git
 	st = status
