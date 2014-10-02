@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export EDITOR=/usr/bin/vim
+export SHELL=/bin/bash
+
 # erase duplicated entries, ignore entries that are duplicates or begin with spaces
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=50000
@@ -41,19 +44,9 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-PS1="${PS_ROOT}\$ "
-
-# enable color support of ls and also add handy aliases
+# enable color support of ls
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
-
-# work related aliases
-if [ -f ~/.bash_aliases_work ]; then
-    . ~/.bash_aliases_work
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -74,6 +67,3 @@ if [ -d ${HOME}/.bashrc.work ]; then
         source "$file";
     done
 fi
-
-export EDITOR=/usr/bin/vim
-

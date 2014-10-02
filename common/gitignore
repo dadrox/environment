@@ -12,13 +12,19 @@ webservice/pom.xml.releaseBackup
 .settings
 .classpath
 .scala_dependencies
+.README.md.html
+.worksheet
 
 # vim swap and backups
+*.swo
 *.swp
 *~
 
 # sbt generated
-project/
+project/target
+project/project
+.tmpBin
+.sbt_completion_cache
 
 # other gitignore files (there can be only one)
 .gitignore
@@ -29,6 +35,3 @@ project/
 .cache
 
 *soap/src/main/java/
-
-# TEMP
-plugins.sbt

@@ -20,18 +20,36 @@ alias lsd='ls -d */'
 alias lsda='ls -ad .*/'
 #alias rm='safe-rm'
 alias o='gnome-open'
+alias say='mate-notify-send'
 alias dates="date '+DATE: %m/%d/%y%nTIME: %H:%M:%S'"
 
+alias dockerpid="docker inspect --format {{.State.Pid}} $1"  
+alias dockerip="docker inspect --format {{.NetworkSettings.IPAddress}} $1"
+
 alias gp='git pull'
+alias ga='git add'
 alias gpr='git pull --rebase'
 alias gs='git status'
 alias gl='git lg'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gci='git ci'
+alias gc='git co'
 alias gpush='git push'
+alias gpu='git push'
+alias gps='git push'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
+alias gi='git-incoming'
+alias gw='git whatchanged'
+alias go='git-outgoing'
+
+alias spark-class='/home/cwood/new/spark-1.0.0-bin-hadoop2/bin/spark-class'
 
 alias new='cd ~/new'
 alias cg='cd ~/code/git'
+alias cgw='cd ~/code/work/git'
+alias cgn='cd ~/code/work/git/needle'
 
 alias ..='cd ..'
 alias ...='cd ../..'

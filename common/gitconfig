@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	pager = less -+$LESS -R
 [color]
 	ui = auto
 [color "status"]
@@ -8,7 +9,7 @@
 	nobranch = red reverse white
 	added = green
 	changed = yellow
-	untracked = magenta
+	untracked = red
 	deleted = red bold
 [alias]
 	git = !git
@@ -16,7 +17,12 @@
 	ci = commit
 	co = checkout
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
 	amend = commit --amend
+	work = !git config user.name cwood && git config user.email christopher.wood2@twcable.com
+	home = !git config user.name dadrox && git config user.email cwood@gmail.com
 [user]
-	email = cbwood@gmail.com
-	name = dadrox
+	name = cwood
+	email = christopher.wood2@twcable.com
+[push]
+	default = simple
