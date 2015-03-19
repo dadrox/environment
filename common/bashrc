@@ -8,11 +8,13 @@
 export EDITOR=/usr/bin/vim
 export SHELL=/bin/bash
 
+source "${HOME}/.bashrc.d/.bash_prompt"
+
 # erase duplicated entries, ignore entries that are duplicates or begin with spaces
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=50000
 # unify history across bash sessions
-export PROMPT_COMMAND="history -a; history -n"
+export PROMPT_COMMAND="es=\$(exit_code); history -a; history -n"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

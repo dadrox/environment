@@ -13,7 +13,7 @@ fi
 Date="$TimeColor\$(date +'%Y%m%d')$Reset"
 
 Time12="\$(date +'%I:%M%P')"
-Time24="\$(date +'%H:%M')"
+Time24="\$(date +'%H%M')"
 Time="$TimeColor${Time24}$Reset"
 
 Tz="$TzColor\$(date +'%z')$Reset"

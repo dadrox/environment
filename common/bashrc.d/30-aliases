@@ -9,6 +9,8 @@ alias ll='ls -l'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+alias lf='find . -type f'
+alias ld='find . -type d'
 alias x='exit'
 alias c='clear'
 alias grep='grep --color=auto'
@@ -22,9 +24,10 @@ alias lsda='ls -ad .*/'
 alias o='gnome-open'
 alias say='mate-notify-send'
 alias dates="date '+DATE: %m/%d/%y%nTIME: %H:%M:%S'"
+alias xack='xargs ack-grep'
 
-alias dockerpid="docker inspect --format {{.State.Pid}} $1"  
-alias dockerip="docker inspect --format {{.NetworkSettings.IPAddress}} $1"
+#alias dockerpid="docker inspect --format {{.State.Pid}} $1"  
+#alias dockerip="docker inspect --format {{.NetworkSettings.IPAddress}} $1"
 
 alias gp='git pull'
 alias ga='git add'
@@ -38,11 +41,15 @@ alias gc='git co'
 alias gpush='git push'
 alias gpu='git push'
 alias gps='git push'
+alias gb='git branch'
 alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 alias gi='git-incoming'
 alias gw='git whatchanged'
 alias go='git-outgoing'
+alias gct='git describe --tags --abbrev=0 HEAD'
+
+alias format='sbt scalariformFormat'
 
 alias spark-class='/home/cwood/new/spark-1.0.0-bin-hadoop2/bin/spark-class'
 
@@ -56,9 +63,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-
-alias gt='git'
-alias gr='gradle'
 
 alias w='cd ~/.wine/drive_c/'
 

@@ -1,0 +1,31 @@
+source $HOME/.bashrc.d/10-colors
+
+leo='ᕕ(ᐛ)ᕗ'
+sleo='ᐛ'
+happy='ツ'
+check='✔'
+open_check='✅'
+smile='ʘ‿ʘ'
+sunglasses='(⌐■_■)'
+
+# ✅ ❤  
+# ✖
+#bad='(╯°□°）╯︵ ┻━┻'
+
+good=$open_check
+bad='(╯°□°）╯︵'
+
+exit_code() {
+	ec="$?"
+	if [ $ec -eq 0 ]; then
+		echo -n "[$Green${good}$Reset]"
+	elif [ $ec -eq 127 ]; then
+		echo -n "[$Bold$Redಠ╭╮ಠ ${ec}$Reset]"
+	elif [ $ec -eq 130 ]; then
+		echo -n "[${Yellow}Killed ${ec}$Reset]"
+	elif [ $ec -eq 141 ]; then
+		echo -n "[$Green${good} 141$Reset]"
+	else
+		echo -n "[$Bold$Red${bad} ${ec}$Reset]"
+	fi
+}

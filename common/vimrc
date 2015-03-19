@@ -27,6 +27,8 @@ set backspace=indent,eol,start
 
 set noautoindent		" always set autoindenting off
 set nocindent
+set tabstop=4
+
 "if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 "else

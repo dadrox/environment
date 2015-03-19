@@ -1,0 +1,42 @@
+# Docker related functions
+
+function dockerpid() {
+	sudo docker inspect --format {{.State.Pid}} $1
+}
+
+function dockerip() {
+	sudo docker inspect --format {{.NetworkSettings.IPAddress}} $1
+}
+
+function install-nsenter() { # docker installs nsenter
+        sudo docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+}
+
+function install-nsenter-if-necessary() { # docker installs nsenter
+        command -v /usr/local/bin/nsenter >/dev/null 2>&1
+        installed=$?
+
+        if [ $installed -ne 0 ]; then
+                install-nsenter
+        fi
+}
+
+function nsenter-pid() { # nsenter <docker process pid>
+        install-nsenter-if-necessary
+
+        if [ -n $1 ] ; then
+                sudo /usr/local/bin/nsenter --target "$1" --mount --uts --ipc --net --pid /bin/bash
+        else
+                echo "Missing required docker pid!"
+        fi
+}
+
+function nsenter-container() { # nsenter <docker container id>
+        install-nsenter-if-necessary
+
+        if [ -n $1 ] ; then
+		nsenter-pid $(dockerpid $1)
+        else
+                echo "Missing required docker container!"
+        fi
+}

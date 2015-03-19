@@ -6,4 +6,5 @@ complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))
 # complete hostnames based on ssh config
 complete -W "$(echo $(grep "Host " ~/.ssh/config | gawk '{print $2}' | tr "\n" " "))" ssh
 
+# complete jump up to directory
 complete -W "$(pwd | tr '/' ' ')" cb

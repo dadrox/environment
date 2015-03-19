@@ -5,7 +5,29 @@
 source $HOME/.bashrc.d/10-colors
 
 cmds () {
-    cat $HOME/.bashrc.d/*functions | grep "()" | grep -v "^_" | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }' | sort
+    cat $HOME/.bashrc.d/*functions | grep "()" | grep -v "^_" | grep -v function | egrep -v "^[A-Z_]*=" | grep -v "cmds" | grep -v "^\s*#" | sed "s/\s\?()//" | sed 's/ { \# /\t/' | awk '{ printf "%-16s %s\n", $1, substr($0,index($0,$2)) }' | sort
+}
+
+forever() { # runs a command in a forever loop, the last arg is an optional sleep time
+	last="${@: -1}"
+	if [[ $last =~ ^[0-9]+\.?[0-9]*$ ]]; then
+		length=$(($#-1))
+		init=${@:1:$length}
+		while true
+			do eval "$init"
+			if (( $(bc <<< "$last > 0") == 1 )); then
+				sleep $last
+			fi
+		done
+	else
+		while true
+			do eval "$@"
+		done
+	fi
+}
+
+trim() { # trims whitespace from the ends of a string
+	sed 's/^[ \t]*//;s/[ \t]*$//'
 }
 
 now() { # seconds since epoch UTC
@@ -13,7 +35,7 @@ now() { # seconds since epoch UTC
 }
 
 myip() { # show external IP
-	curl checkip.dyndns.org
+	curl http://checkip.dyndns.org/
 }
 
 dns() { # show dns settings
@@ -66,7 +88,7 @@ cb() { # cd up to a certain directory name
 }
 
 _find_file_w_extension() {
-    find . -type f -name $1
+    find . -type f -name "$1"
 }
 
 scala_files() { # find all scala files from the current directory
@@ -90,11 +112,11 @@ _grepit() {
 }
 
 _find_whatev() {
-	$1 | _grepit "$2"
+	"$1" | _grepit "$2"
 }
 
 _find_whatev_i() {
-	$1 | _grepit -i "$2"
+	"$1" | _grepit -i "$2"
 }
 
 fs() { # finds a given string in scala files.
@@ -116,18 +138,17 @@ fsig() { # find a given string in scala files, ignoring tests
 }
 
 fsf() { # finds a scala file with the given string in its name (case-insensitive)
+	hr 2
 	scala_files | grep -i "$@"
 }
 
 fsc() { # finds a scala class, object, or trait (case-insensitive)
-    scala_files | xargs ack-grep -il --color-match=yellow  --match "(class|object|trait) [a-zA-Z]*$1"
-}
-
-fsco() { # finds a scala class, object, or trait (case-insensitive)
-    scala_files | xargs ack-grep -il --color-match=yellow  --match "(class|object|trait)\s+$1[\s(\[]"
+	hr 2
+	scala_files | _grepit "(class|object|trait) [a-zA-Z]*$1"
 }
 
 fa() { # finds a given string in any file
+	hr 2
 	find . -type f | _grepit "$@"
 }
 
@@ -149,6 +170,10 @@ fgri() { # finds a given string in groovy files (case-insensitive)
 
 fj() { # finds a given string in java files
 	_find_whatev java_files "$@"
+}
+
+fjc() { # finds a given string in java files
+	java_files | xargs ack-grep -il --color-match=yellow  --match "(class|interface) [a-zA-Z]*$1"
 }
 
 fji() { # finds a given string in java files (case-insensitive)
@@ -175,8 +200,12 @@ fclass() { # find jar in ivy cache containing a class name with the given string
 	find ~/.ivy2/cache/ -name "*.jar" -exec grep -il --color "$@" {} \;
 }
 
-ff() { # find a file name containing the given string
-	find . -type f -iname "*$1*"
+ff() { # find files in the given directory
+	find "$1" -type f | grep -v .eclipse
+}
+
+ffn() { # find a file name containing the given string
+	find . -type f -iname "*$1*" | grep -v .eclipse
 }
 
 manifest() { # prints the manifest of the given jar
